@@ -1,0 +1,57 @@
+.profile-container {
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.profile-images img {
+  object-fit: cover;
+  width: 123px;
+  height: 123px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  background-color: #fff;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.profile-name {
+  margin-right: 20px;
+}
+
+.profile-edit-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .2s;
+
+  a {
+    display: block;
+    padding: 4px 12px;
+  }
+
+  &:hover {
+    background: #67c5ff;
+    color: white;
+  }
+}
+
+.profile-article {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.card.profile-card {
+  margin-right: 9px;
+  width: calc(33.33333333% - 6px);
+
+  &:nth-child(3n) {
+    margin-right: 0;
+  }
+}

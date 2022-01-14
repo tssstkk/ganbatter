@@ -1,0 +1,34 @@
+%main.articles
+  .outer.container
+    .row.profile-container
+      .col-2.profile-images
+        = image_tag current_user.avatar_image
+      .col-10.profile-wrapper
+        .profile-header
+          .profile-info
+            %p.profile-name
+              = current_user.display_nickname
+            .profile-edit-btn
+              = link_to '編集', edit_profile_path
+        %p.profile-introduction
+          = current_user.profile&.introduction
+
+    %ul.profile-article
+      - current_user.articles.each do |article|
+        .card.is-active.profile-card.col-4.mb-3
+          = link_to article_path(article) do
+            .card-body
+              %h3.card-title= article.title.truncate(20)
+              %p.card-text!= article.content
+              .link-btn-wrapper
+                .like-btn
+                  - if article.likes_count == 0
+                    = image_tag 'heart.svg', class: 'like-button-img'
+                  - else
+                    = image_tag 'heart-active.svg', class: 'like-button-img'
+                %span{id: "article-likes-#{article.id}"}= article.likes_count
+              %p.card-time-text= "#{time_ago_in_words(article.created_at)}前"
+            .card-footer
+              .card-footer-left
+                %p= nickname_or_name(article)
+                = image_tag current_user.avatar_image, alt: 'アイコン', class: 'avatar'

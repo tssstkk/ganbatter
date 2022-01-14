@@ -1,0 +1,9 @@
+.modal.micromodal-slide{id: "modal-#{article.id}", "aria-hidden" => "true"}
+  .modal__overlay{"data-micromodal-close" => "", :tabindex => "-1"}
+    .modal__container{"aria-labelledby" => "modal-1-title", "aria-modal" => "true", :role => "dialog"}
+      %header.modal__header
+        = image_tag 'delete-eva.jpeg'
+      %main#modal-1-content.modal__content
+      .modal__footer
+        = link_to '逃げる', article_path(article), data: {method: 'delete', confirm: '削除しますか？'}, class: 'modal__btn modal__btn-primary'
+        %button.modal__btn{"aria-label" => "Close this dialog window", "data-micromodal-close" => ""} 逃げない

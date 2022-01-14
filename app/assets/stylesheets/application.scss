@@ -1,0 +1,130 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+@import "custom-bootstrap";
+@import "base";
+@import "header";
+@import "articles";
+@import "devise";
+@import 'like-btn';
+@import 'profiles';
+@import 'pagenate';
+@import 'modal';
+
+.logo {
+  display: block;
+  margin-right: 12px;
+}
+
+.archives-heading {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  padding: .25em 1em;
+  margin: 20px 0 40px;
+  border: dashed 1px #fff;
+  background: #c8e4ff;
+  box-shadow: 0 0 0 5px #c8e4ff;
+  color: #454545;
+}
+
+.btn-square {
+  display: block;
+  padding: 0.5em 1em;
+  margin-top: 60px;
+  text-decoration: none;
+  background: #4f9df4;
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 16px;
+
+  &:hover {
+    background: rgba($color: #1984ff, $alpha: 1.0);
+  }
+}
+
+.btn-blue-bc {
+  background: #4f9df4;
+  margin: 0.5em 0.5em 0.5em 0;
+  display: inline-block;
+  margin: 0.5em 0;
+  padding: 0.4em 1.3em;
+  border-radius: 3px;
+  color: #fff;
+  text-decoration: none;
+  vertical-align: middle;
+  transition: 0.3s ease-in-out;
+  text-decoration: none !important;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba($color: #000000, $alpha: .2);
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba($color: #000000, $alpha: .3);
+  }
+}
+
+.archives-heading.rank {
+  background: #f89174;
+  box-shadow: 0 0 0 5px #f89174;
+}
+
+.ranking-header {
+  display: flex;
+  align-items: center;
+}
+
+.ranking-txt {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.ranking-img {
+  width: 60px;
+  transform: translate(0, -5px);
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+.latest-heading {
+  margin: 20px 0;
+}
+
+.more-btn {
+  display: block;
+  margin: 10px 0 40px;
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #fd9535;
+  border-bottom: solid 2px #d27d00;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+  font-weight: bold;
+
+  &:hover {
+    border-bottom: solid 2px #fd9535;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+  }
+}

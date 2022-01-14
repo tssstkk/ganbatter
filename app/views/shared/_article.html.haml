@@ -1,0 +1,42 @@
+- if @article
+  %li.card.mb-3#article-id{data: {article_id: @article.id}}
+    .card-body
+      %h3.card-title= @article.title
+      %p.card-text!= @article.content
+      .link-btn-wrapper
+        .bubbly-button.create-like-btn
+          - if @article.likes_count == 0
+            = image_tag 'heart.svg', class: 'like-button-img'
+          - else
+            = image_tag 'heart-active.svg', class: 'like-button-img'
+        %span{id: "likes-#{@article.id}"}= @likes
+      %p.card-time-text= "#{time_ago_in_words(@article.created_at)}前"
+    .card-footer
+      .card-footer-left
+        %p= nickname_or_name(@article)
+        = link_to user_path(@article.user_id) do
+          = image_tag @article.user.avatar_image, alt: 'アイコン', class: 'avatar'
+      - if user_signed_in? && current_user.articles.exists?(id: @article.id)
+        .card-footer-right
+          = link_to edit_article_path(@article) do
+            = image_tag 'edit-icon.png', alt: '編集ボタン', class: 'edit'
+          %div{"data-micromodal-trigger" => "modal-#{@article.id}"}
+            = image_tag 'delete-icon.png', alt: '削除ボタン', class: 'delete'
+    = render 'shared/modal', article: @article
+
+= javascript_pack_tag 'micromodal'
+:javascript
+  var animateButton = function(e) {
+    e.preventDefault;
+    e.target.classList.remove('animate');
+
+    e.target.classList.add('animate');
+    setTimeout(function(){
+      e.target.classList.remove('animate');
+    },700);
+  };
+
+  var bubblyButtons = document.getElementsByClassName("bubbly-button");
+  for (var i = 0; i < bubblyButtons.length; i++) {
+    bubblyButtons[i].addEventListener('click', animateButton, false);
+  }

@@ -1,0 +1,32 @@
+%ul
+  - if @article
+    - @comments.each do |comment|
+      %li.card.mb-3.comment-card
+        .card-body
+          %p.card-text.comment-text= comment.content
+        .card-footer
+          .card-footer-left
+            %p= bot_or_user_name(comment)
+            - if comment.bot_id.zero?
+              = link_to user_path(comment.user_id) do
+                = image_tag comment.user.avatar_image, alt: 'アバター画像', class: 'avatar'
+            - else
+              = image_tag comment.img, alt: 'アバター画像', class: 'avatar'
+          - if login_and_commented_user?(comment)
+
+            .card-footer-right
+              .comment-edit-wrap.show-comment-form
+                = image_tag 'edit-icon.png',   alt: '編集ボタン', class: 'edit'
+              = link_to article_comment_path(comment.article_id, comment.id), data: { method: 'delete', confirm: "削除するの?" } do
+                = image_tag 'delete-icon.png', alt: '削除ボタン', class: 'delete'
+        .comment-text-area
+          - if user_signed_in?
+            = form_with(model: comment, url: article_comment_path(@article.id, comment.id), local: true) do |f|
+              - comment.errors.full_messages.each do |message|
+                %li= message
+              .form-edit-comment
+                %div
+                  = f.hidden_field :user_id, :value => current_user.id
+                  = f.hidden_field :article_id, :value => @article.id
+                  = f.text_area :content, class: 'form-control', required: true
+                = f.submit '編集する', class: "btn-blue-bc"

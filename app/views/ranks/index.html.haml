@@ -1,0 +1,28 @@
+- if @articles
+  .conteiner.articles.outer
+    %h1.archives-heading.rank がんばったーランキング TOP3
+    %ul.row
+      - @ranks.each.with_index(1) do |article, num|
+        .ranking-header
+          %p.ranking-txt.ribbon5
+            = "第#{num}位"
+          .ranking-img
+            = image_tag "rank0#{num}.png"
+        %li.card.mb-5.is-active
+          = link_to article_path(article) do
+            .card-body
+              %h3.card-title= article.title.truncate(20)
+              %p.card-text!= article.content
+              .link-btn-wrapper
+                .like-btn
+                  - if article.likes_count == 0
+                    = image_tag 'heart.svg', class: 'like-button-img'
+                  - else
+                    = image_tag 'heart-active.svg', class: 'like-button-img'
+                %span= article.likes_count
+            %p.card-time-text= "#{time_ago_in_words(article.created_at)}前"
+          .card-footer
+            .card-footer-left
+              %p= nickname_or_name(article)
+              = link_to user_path(article.user_id) do
+                = image_tag article.user.avatar_image, alt: 'アイコン', class: 'avatar'

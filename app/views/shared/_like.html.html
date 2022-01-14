@@ -1,0 +1,12 @@
+- if @article.likes_count == 0
+  = image_tag 'heart.svg', class: 'like-button-img'
+- else
+  = image_tag 'heart-active.svg', class: 'like-button-img'
+
+:javascript
+  import $ from 'jquery'
+  $(function(){
+    $(document).on('click', '.create-like-btn', function(){
+      $(this).children().attr("src", "#{asset_path 'heart-active.svg'}")
+    })
+  })
