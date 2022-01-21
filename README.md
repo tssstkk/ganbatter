@@ -6,7 +6,7 @@
 
 ## Set up
 ```zsh
-$ git clone https://github.com/SonicGardenCamp/ganbatter.git
+$ git clone https://github.com/tssstkk/ganbatter.git
 $ cd ./ganbatter
 $ bundle config set --local without 'production'
 $ bundle install
